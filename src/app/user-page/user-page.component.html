@@ -1,0 +1,5 @@
+<app-user-form
+    *ngFor="let user of users"
+    [user]="user"
+    (userChanged)="changedUser($event)"
+></app-user-form>
