@@ -1,5 +1,13 @@
 <app-user-form
-    *ngFor="let user of users"
-    [user]="user"
-    (userChanged)="changedUser($event)"
+    [users]="users"
+    (usersChanged)="changedUsers($event)"
+    #validateForm
 ></app-user-form>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-offset-6 col-md-3">
+            <button type="button" (click)="validateform()" class="btn btn-success btn-">Validar Formulario</button>
+        </div>
+    </div>
+</div>

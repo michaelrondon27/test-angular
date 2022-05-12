@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from '../models/users.model';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
   selector: 'app-user-page',
@@ -8,6 +9,8 @@ import { User } from '../models/users.model';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent {
+  @ViewChild('validateForm') private userFormComponent!: UserFormComponent;
+
   users: User[] = [
     { id: '1', name: 'Vanesa' },
     { id: '2', name: 'Gaspar' },
@@ -16,9 +19,15 @@ export class UserPageComponent {
     { id: '5', name: 'Ramiro' }
   ];
 
-  changedUser( userChanged: User ): void {
-    const index = this.users.findIndex( (user: User) => user.id === userChanged.id );
+  changedUsers( usersChanged: User[] ): void {
+    this.users = usersChanged;
+  }
 
-    this.users[index] = userChanged;
+  validateform(): void {
+    if ( this.userFormComponent.form.status === 'VALID' ) {
+      console.log('El formulario es válido');
+    } else {
+      console.log('El formulario es inválido');
+    }
   }
 }

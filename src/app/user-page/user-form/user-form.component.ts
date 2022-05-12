@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { User } from '../../models/users.model';
 
@@ -9,24 +9,33 @@ import { User } from '../../models/users.model';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  @Input() user!: User;
+  @Input() users!: User[];
 
-  @Output() userChanged = new EventEmitter<User>();
+  @Output() usersChanged = new EventEmitter<User[]>();
 
   form!: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm(): void {
-    this.form = new FormGroup({
-      'id': new FormControl(this.user?.id),
-      'name': new FormControl(this.user?.name, [Validators.required])
-    });
+    let groups: any = [];
 
-    this.form.valueChanges.subscribe( (value) => {
-      this.userChanged.emit(value);
-    });
+    for ( let i = 0; i < this.users.length; i++ ) {
+      groups[`form${ i }`] = [this.users[i].name, [Validators.required]];
+    }
+
+    this.form = this.formBuilder.group(groups);
+  }
+
+  nameChanged( index: number ): void {
+    this.users[index].name = this.form.get(`form${ index }`)?.value;
+
+    this.usersChanged.emit(this.users);
   }
 }

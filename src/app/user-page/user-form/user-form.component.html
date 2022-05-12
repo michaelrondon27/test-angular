@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="row">
-        <form [formGroup]="form">
+    <div class="row" *ngFor="let user of users; let i = index">
+        <form [formGroup]="form" (keyup)="nameChanged(i)">
             <div class="form-group">
                 <label for="name">name</label>
 
-                <input type="text" id="name" class="form-control" formControlName="name">
+                <input type="text" id="name" class="form-control" formControlName="form{{ i }}">
             </div>
         </form>
     </div>

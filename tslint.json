@@ -148,6 +148,8 @@
       "app",
       "kebab-case"
     ],
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "prefer-for-of": false,
+    "prefer-const": false
   }
 }
