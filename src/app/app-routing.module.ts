@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserPageComponent } from './user-page/user-page.component';
 import { UsersArrayComponent } from './users-array/users-array.component';
+import { PokemonComponent } from './pokemon/pokemon.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'users-array',
     component: UsersArrayComponent
+  },
+  {
+    path: 'pokemon',
+    component: PokemonComponent
   },
 ];
 
