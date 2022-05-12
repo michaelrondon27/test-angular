@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserFormComponent } from './user-page/user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersArrayComponent } from './users-array/users-array.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserPageComponent,
-    UserFormComponent
+    UserFormComponent,
+    UsersArrayComponent
   ],
   imports: [
     BrowserModule,
